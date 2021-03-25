@@ -2,7 +2,6 @@
 #include <unistd.h> //lib for time function
 using namespace std;
 
-//Maaf kak, saya bingung maksud dibuat fungsi itu semuanya? atau yg pangkat sama integral saja??
 float pls(float a,float b){
     return a+b; }
 float mns(float a,float b){
