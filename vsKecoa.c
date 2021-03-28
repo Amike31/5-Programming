@@ -17,6 +17,7 @@ Sisanya merupakan fungsi tambahan yang akan dipanggal di fungsi utama
 #include <math.h>
 
 //Fungsi Player
+//Menampilkan peta 10x10
 int peta(int map[10][10])
 {
     int i,j;
@@ -30,6 +31,7 @@ int peta(int map[10][10])
     }
 
 }
+//Mengembalikan kordinat x tempat player berada
 int xplayer(int map[10][10])
 {
     int i,j;
@@ -44,6 +46,7 @@ int xplayer(int map[10][10])
         }
     }
 }
+//Mengembalikan kordinatal y tempat player berada
 int yplayer(int map[10][10])
 {
     int i,j;
@@ -58,6 +61,7 @@ int yplayer(int map[10][10])
         }
     }
 }
+//Fungsi pilihan gerakan player
 int gerak(int map[10][10], int xplayer, int yplayer, int xkecoa, int ykecoa,int jarak,int healthKecoa,int kill,int healthPlayer)
 {
     system("cls");
@@ -72,10 +76,12 @@ int gerak(int map[10][10], int xplayer, int yplayer, int xkecoa, int ykecoa,int 
     printf("Jumlah Kill: %d\n",kill);
     printf("Nyawa User : %d\n",healthPlayer);
     printf("Move: ");
+    //user diminta menginput "w,a,s,d" untuk bergerak, "s" untuk menembak, "q" untuk keluar aplikasi
     gerakan=_getch();
+    //"w,a,s,d" tidak akan menggerakan player apabila player bergerak keluar peta atau player bergerak menabrak kecoa
     switch (gerakan)
     {
-    case 'w':
+    case 'w': //bergerak ke atas
         if (yplayer==9)
         {
             return 1;
@@ -90,7 +96,7 @@ int gerak(int map[10][10], int xplayer, int yplayer, int xkecoa, int ykecoa,int 
             map[yplayer+1][xplayer]=1;
             return 1;
         }
-    case 'a':
+    case 'a': //bergerak ke kiri
         if (xplayer==0)
         {
             return 1;
@@ -105,7 +111,7 @@ int gerak(int map[10][10], int xplayer, int yplayer, int xkecoa, int ykecoa,int 
             map[yplayer][xplayer-1]=1;
             return 1;
         }
-    case 's':
+    case 's': //bergerak ke belakang
         if (yplayer==0)
         {
             return 1;
@@ -120,7 +126,7 @@ int gerak(int map[10][10], int xplayer, int yplayer, int xkecoa, int ykecoa,int 
             map[yplayer-1][xplayer]=1;
             return 1;
         }
-    case 'd':
+    case 'd': //bergerak ke kanan
         if (xplayer==9)
         {
             return 1;
@@ -135,25 +141,26 @@ int gerak(int map[10][10], int xplayer, int yplayer, int xkecoa, int ykecoa,int 
             map[yplayer][xplayer+1]=1;
             return 1;
         }
-    case 'e':
+    case 'e': //menembak
     {
         return 2;
     }
-    case 'q':
+    case 'q': //keluar
         {
         return 0;
         }
-    default:
+    default: //salah input
         return 1;
     }
 }
+//fungsi menembak kecoa
 int shoot(int map[10][10], int jarak, int healthKecoa)
 {
-    if (jarak<=3)
+    if (jarak<=3) //jika player menembak kecoa dengan jarak<=3 maka nyawa kecoa akan berkurang 1
     {
         return healthKecoa-1;
     }
-    else
+    else //jika player menembak kecoa dengan jarak>3 maka nyawa kecoa akan bertambah 1
     {
         return healthKecoa+1;
     }
@@ -161,6 +168,7 @@ int shoot(int map[10][10], int jarak, int healthKecoa)
 }
 
 //Fungsi Kecoa
+//Mengembalikan kordinat x tempat kecoa berada
 int xkecoa(int map[10][10])
 {
     int i,j;
@@ -175,6 +183,7 @@ int xkecoa(int map[10][10])
         }
     }
 }
+//Mengembalikan kordinat y tempat kecoa berada
 int ykecoa(int map[10][10])
 {
     int i,j;
@@ -189,13 +198,18 @@ int ykecoa(int map[10][10])
         }
     }
 }
+//Fungsi memunculkan kecoa di peta
 int spawnKecoa(int map[10][10],int xplayer, int yplayer)
 {
-    int xkecoa, ykecoa, ulang=1;
-    while (ulang==1)
+    int xkecoa; //kordinat x kecoa pada peta
+    int ykecoa; //kordinat y kecoa pada peta
+    int ulang=1; 
+    while (ulang==1) // kordinat (x,y) kecoa akan dibuat secara random
     {
     xkecoa=rand()%10;
     ykecoa=rand()%10;
+    //Jika kordinat (x,y) kecoa digenerate di 8 kotak sekitar player atau di kordinat player,
+    //Maka kordinat kecoa akan digenerate ulang
     if(xkecoa==xplayer && ykecoa==yplayer)
     {
         ulang=1;
@@ -265,19 +279,25 @@ int spawnKecoa(int map[10][10],int xplayer, int yplayer)
         ulang=0;
     }
     }
+    //memasukkan kecoa di peta
     map[ykecoa][xkecoa]=2;
 }
+//Fungsi mengitung jarak kecoa dengan player (bukan jarak secara diagonal)
 int jarakKecoa(int xplayer, int yplayer, int xkecoa, int ykecoa)
 {
     return abs((xkecoa-xplayer))+abs(ykecoa-yplayer);
 }
+//Fungsi menggerakan kecoa secara random
 int moveKecoa(int map[10][10],int xkecoa, int ykecoa, int xplayer, int yplayer)
 {
     int randomMove;
     randomMove=rand()%4;
     switch (randomMove)
+    //menggerakan kecoa secara random dengan syarat:
+    //kecoa tidak bergerak ke luar peta dan kecoa tidak bergerak menabrak player
+    //jika syarat tidak terpenuhi, kecoa tidak akan bergerak
     {
-    case 0:
+    case 0: //menggerakan kecoa ke atas
         if (ykecoa==9)
         {
             return 1;
@@ -292,7 +312,7 @@ int moveKecoa(int map[10][10],int xkecoa, int ykecoa, int xplayer, int yplayer)
             map[ykecoa+1][xkecoa]=2;
             return 1;
         }
-    case 1:
+    case 1: //menggerakan kecoa ke kiri
         if (xkecoa==0)
         {
             return 1;
@@ -307,7 +327,7 @@ int moveKecoa(int map[10][10],int xkecoa, int ykecoa, int xplayer, int yplayer)
             map[ykecoa][xkecoa-1]=2;
             return 1;
         }
-    case 2:
+    case 2: //menggerakan kecoa ke belakang
         if (ykecoa==0)
         {
             return 1;
@@ -322,7 +342,7 @@ int moveKecoa(int map[10][10],int xkecoa, int ykecoa, int xplayer, int yplayer)
             map[ykecoa-1][xkecoa]=2;
             return 1;
         }
-    case 3:
+    case 3: //menggerakan kecoa ke kanan
         if (xkecoa==9)
         {
             return 1;
@@ -346,8 +366,10 @@ int moveKecoa(int map[10][10],int xkecoa, int ykecoa, int xplayer, int yplayer)
     }
 
 }
+//Fungsi damage dari kecoa
 int damageKecoa(int xkecoa,int ykecoa, int xplayer, int yplayer, int healthPlayer)
 {
+    //kecoa akan mendamage player (nyawa player -1) jika player berada di 8 kotak sekitar kecoa
     if (ykecoa+1==yplayer)
     {
         if (xkecoa-1==xplayer)
