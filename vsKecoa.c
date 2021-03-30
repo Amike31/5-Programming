@@ -459,6 +459,7 @@ int main()
     int healthKecoa=3; //Menginisialisasi Nyawa Kecoa. Ketika nyawa kecoa=0, kill bertambah 1
     int kill=0; //Menginisialiasi jumlah kecoa yang player bunuh. Akan bertambah ketika Nyawa kecoa==0
     int healthPlayer=3; //Menginisialisasi nyawa awal player. Program akan selesai ketika nyawa player==0
+    int baruSpawnKecoa=0;//Mengecek apakah kecoa baru spawn. Jika baru spawn, kecoa tidak akan bergerak
     srand(time(NULL)); //Menginisialiasi seed agar dapat mengeluarkan angka random (berfungsi dalam memunculkan kecoa dan menggerakan kecoa)
     map[0][0]=1; //Menginisialisasi player di kordinat (0,0)
     spawnKecoa(map,xplayer(map),yplayer(map)); //Menginisialisasi kecoa di lokasi acak yang tidak sekitar player
@@ -481,6 +482,7 @@ int main()
             kill++; //kill player bertambah 1
             healthKecoa=3; //memunculkan kembali kecoa di lokasi random dengan nyawa 3
             spawnKecoa(map,xplayer(map),yplayer(map));
+            baruSpawnKecoa=1;
             break;
         }
         quit=0;
@@ -496,9 +498,13 @@ int main()
     }
     //setelah player memilih untuk bergerak/menembak/keluar(quit)
     //Kecoa akan bergerak secara random sesuai fungsi menggerakan kecoa
+    if (baruSpawnKecoa==0)
+    {
     moveKecoa(map,xkecoa(map),ykecoa(map),xplayer(map),yplayer(map));
+    }
     //Nyawa player akan berkurang/tetap susai fungsi damage kecoa
     healthPlayer=damageKecoa(xkecoa(map),ykecoa(map),xplayer(map),yplayer(map),healthPlayer);
+    baruSpawnKecoa=0;
     if (healthPlayer==0) //jika payaer mati (nyawa player==0), maka program akan selesai dan menampilkan tulisan dibawah ini ke layar
     {
         system("cls");
