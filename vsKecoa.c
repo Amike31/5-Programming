@@ -527,6 +527,24 @@ void intro() {
   printf("Baiklah %s jika kamu sudah paham.\nSekarang tugasmu untuk menyelamatkan kota ini.\nSemoga beruntung\n", name);
 }
 
+void rules()
+{
+    char ulangi='y';
+    while (ulangi=='y'){
+        printf("----------------------------------       ATURAN BERMAIN       ----------------------------------\n");
+        printf("* Player dapat mengontrol robot menggunakan tombol yang tersedia.\n");
+        printf("* Player dapat bergerak keatas(w), kebawah(s), kekanan(d), dan kekiri(a) serta dapat menembak(e).\n");
+        printf("* Robot diharuskan untuk memusnahkan kecoa. Robot direpresentasikan oleh angka 1 dan kecoa oleh angka 2.\n");
+        printf("* Jarak maksimal tembakan robot adalah 4. Jarak antara robot dan kecoa akan diberikan pada tampilan.\n");
+        printf("* Robot dan kecoa memiliki nyawa yang berupa 'health'. Kecoa akan mati ketika bar health turun ke angka 0.\n  Dan terhitung telah membunuh 1 kecoa\n");
+        printf("* Robot dapat menembak kecoa dan akan memberikan damage dengan mengurangi 1 nyawa kecoa.\n");
+        printf("* Namun, kecoa dapat menyerang robot ketika jarak antara robot dan kecoa adalah 1.\n  Dan menyebabkan kerusakan dengan mengurangi 1 nyawa robot.\n");
+        printf("* Apabila bar health robot turun ke angka 0, maka robot akan rusak total dan mati.\n");
+        printf("* Player juga dapat menarik mundur robot apabila diperlukan dengan menggunakan tombol quit(q).\n");
+        printf("\nApakah kamu sudah paham? Tekan (y) untuk melanjutkan. Jika ingin mengualangi, tekan tombol apapun.\n");
+        scanf(" %c", &ulangi);
+    } 
+}
 
 
 
@@ -545,6 +563,9 @@ void intro() {
 int main()
 {
     intro();
+    system("cls");
+    rules();
+    system("cls");
     int map[10][10]={0}; //Menginisialisi peta 10x10 yang berisi 0
     int quit=0; //Menginisialisasi quit yang membuat program berhenti ketika quit != 0
     int healthKecoa=3; //Menginisialisasi Nyawa Kecoa. Ketika nyawa kecoa=0, kill bertambah 1
