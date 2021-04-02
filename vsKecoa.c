@@ -439,25 +439,23 @@ int damageKecoa(int xkecoa,int ykecoa, int xplayer, int yplayer, int healthPlaye
 }
 // Fungsi Intro untuk awal
 void intro() {
-  printf("Pada tahun 2069, terjadi perang nuklir antara Amerika dan China. \nDalam 2 jam perdaban manusia RUNTUH....\n\n\n");
-  sleep(3);
-  printf("Intensitas  partikel  radioaktif  yang  gugur  dari  stratosfer  mengakibatkan kematian milyaran  makhluk  hidup.\nTumbuhan dan  hewan  yang  selamat  bermutasi  menjadi spesies ganas yang radioaktif. \nEntah sudah berapa lama matahari tidak tampak....\n\n\n");
-  sleep(3);
-  printf("TOLONG...\n");
-  sleep(2);
-  printf("TOLONG...\n");
-  sleep(2);
-  printf("TOLONG KAMI....\n");
-  sleep(3);
-
-  char skip;
-  printf("\n---------------------------------------\n");
-  printf("skip? tekan (s) \n");
-  printf("Tekan apa pun untuk melanjutkan cerita \n");
-  scanf("%c", &skip);
-  printf("---------------------------------------\n\n");
-  if (skip != 's'){
-      printf("Suara itu tampak tidak jauh dari sini...\n\n");
+  printf("Skip Intro?(y/n)");
+  char skipintro;
+  skipintro=_getch();
+  if (skipintro!='y')
+  {
+    printf("Pada tahun 2069, terjadi perang nuklir antara Amerika dan China. \nDalam 2 jam perdaban manusia RUNTUH....\n\n\n");
+    sleep(3);
+    printf("Intensitas  partikel  radioaktif  yang  gugur  dari  stratosfer  mengakibatkan kematian milyaran  makhluk  hidup.\nTumbuhan dan  hewan  yang  selamat  bermutasi  menjadi spesies ganas yang radioaktif. \nEntah sudah berapa lama matahari tidak tampak....\n\n\n");
+    sleep(3);
+    printf("TOLONG...\n");
+    sleep(2);
+    printf("TOLONG...\n");
+    sleep(2);
+    printf("TOLONG KAMI....\n");
+    sleep(3);
+    printf("---------------------------------------\n\n");
+    printf("Suara itu tampak tidak jauh dari sini...\n\n");
       sleep(2);
       printf("Tiba-tiba ada orang datang menghampiriku\ndan berkata...\n");
       sleep(3);
@@ -490,21 +488,25 @@ void intro() {
       sleep(3);
   }
 
-  printf("Sekarang waktumu untuk menyelamatkan dunia\n\n");
+  printf("\nSekarang waktumu untuk menyelamatkan dunia\n\n");
   sleep(2);
   printf("Perkenalkan dirimu terlebih dahulu\n\n");
   char name[20];
   printf("Halo aku ");
   scanf("%s", name);
   printf("Aku bertugas sebagai tim penyerangan\n\n");
-  sleep(3);
+  sleep(1);
   printf("Halo %s, Aku akan memberimu arahan untuk menggunakan robot ini\n\n", name);
+  printf("Skip Penjelasan? (y/n)");
+  char skippenjelasan;
+  skippenjelasan=_getch();
   char ulangi = 'y';
+  if (skippenjelasan!='y')
+  {
   while (ulangi == 'y'){
     printf("Robot ini memiliki spesifikasi sebagai berikut \n");
-    sleep(2);
     printf("1.Bisa bergerak maju, mundur, ke kanan dan ke kiri.\n2.Mampu mengkalkulasi jarak antara robot dan musuh\n3.Mampu menembak kecoak mutan tersebut\n\n");
-    sleep(3);
+    sleep(1);
     printf("Oh iya..., untuk menggerakkan dan menyerang kamu perlu menekan tombol berikut\n");
     printf("------Control------\n");
     printf("    (q)(w)(e)\n");
@@ -521,16 +523,17 @@ void intro() {
     sleep(2);
     printf("Apa kamu ingin mengulangi penjelasan ini\n");
     printf("Ketik 'y' jika kamu ingin mengulang. Ketik huruf apa pun jika kamu sudah paham dan ingin langsung memulai penyerangan\n");
-    scanf(" %c", &ulangi);
+    ulangi=_getch();
   }
-  sleep(3);
+  }
   printf("Baiklah %s jika kamu sudah paham.\nSekarang tugasmu untuk menyelamatkan kota ini.\nSemoga beruntung\n", name);
 }
 
 void rules()
 {
-    char ulangi='y';
-    while (ulangi=='y'){
+    char ulangi='z';
+    while (ulangi!='y')
+    {
         printf("----------------------------------       ATURAN BERMAIN       ----------------------------------\n");
         printf("* Player dapat mengontrol robot menggunakan tombol yang tersedia.\n");
         printf("* Player dapat bergerak keatas(w), kebawah(s), kekanan(d), dan kekiri(a) serta dapat menembak(e).\n");
@@ -542,7 +545,7 @@ void rules()
         printf("* Apabila bar health robot turun ke angka 0, maka robot akan rusak total dan mati.\n");
         printf("* Player juga dapat menarik mundur robot apabila diperlukan dengan menggunakan tombol quit(q).\n");
         printf("\nApakah kamu sudah paham? Tekan (y) untuk melanjutkan. Jika ingin mengualangi, tekan tombol apapun.\n");
-        scanf(" %c", &ulangi);
+        ulangi=_getch();
     } 
 }
 
