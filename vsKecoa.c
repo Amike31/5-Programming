@@ -156,7 +156,7 @@ int gerak(int map[10][10], int xplayer, int yplayer, int xkecoa, int ykecoa,int 
 //fungsi menembak kecoa
 int shoot(int map[10][10], int jarak, int healthKecoa)
 {
-    if (jarak<=3) //jika player menembak kecoa dengan jarak<=3 maka nyawa kecoa akan berkurang 1
+    if (jarak<=4) //jika player menembak kecoa dengan jarak<=3 maka nyawa kecoa akan berkurang 1
     {
         return healthKecoa-1;
     }
