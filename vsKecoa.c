@@ -15,6 +15,8 @@ Sisanya merupakan fungsi tambahan yang akan dipanggal di fungsi utama
 #include <time.h>
 #include <conio.h>
 #include <math.h>
+#include <Windows.h>
+#include <unistd.h>
 
 //Fungsi Player
 //Menampilkan peta 10x10
@@ -156,7 +158,7 @@ int gerak(int map[10][10], int xplayer, int yplayer, int xkecoa, int ykecoa,int 
 //fungsi menembak kecoa
 int shoot(int map[10][10], int jarak, int healthKecoa)
 {
-    if (jarak<=4) //jika player menembak kecoa dengan jarak<=3 maka nyawa kecoa akan berkurang 1
+    if (jarak<=4) //jika player menembak kecoa dengan jarak<=4 maka nyawa kecoa akan berkurang 1
     {
         return healthKecoa-1;
     }
@@ -435,7 +437,95 @@ int damageKecoa(int xkecoa,int ykecoa, int xplayer, int yplayer, int healthPlaye
         return healthPlayer;
     }
 }
+// Fungsi Intro untuk awal
+void intro() {
+  printf("Pada tahun 2069, terjadi perang nuklir antara Amerika dan China. \nDalam 2 jam perdaban manusia RUNTUH....\n\n\n");
+  sleep(3);
+  printf("Intensitas  partikel  radioaktif  yang  gugur  dari  stratosfer  mengakibatkan kematian milyaran  makhluk  hidup.\nTumbuhan dan  hewan  yang  selamat  bermutasi  menjadi spesies ganas yang radioaktif. \nEntah sudah berapa lama matahari tidak tampak....\n\n\n");
+  sleep(3);
+  printf("TOLONG...\n");
+  sleep(2);
+  printf("TOLONG...\n");
+  sleep(2);
+  printf("TOLONG KAMI....\n");
+  sleep(3);
 
+  char skip;
+  printf("\n---------------------------------------\n");
+  printf("skip? tekan (s) \n");
+  printf("Tekan apa pun untuk melanjutkan cerita \n");
+  scanf("%c", &skip);
+  printf("---------------------------------------\n\n");
+  if (skip != 's'){
+      printf("Suara itu tampak tidak jauh dari sini...\n\n");
+      sleep(2);
+      printf("Tiba-tiba ada orang datang menghampiriku\ndan berkata...\n");
+      sleep(3);
+      printf("Apa benar kamu ingin menjadi anggota Urang Robot Orang\n\n");
+      sleep(3);
+      printf("Siapa kamu???\n");
+      sleep(2);
+      printf("Orang itu tidak mau menjawab dan hanya memberiku pesan...\n\n");
+      sleep(2);
+      printf("Kamu tidak perlu tahu siapa aku... Aku butuh bantuanmu\n");
+      sleep(1);
+      printf("Semua tim Urang Robot Orang sedang sibuk menghadapi mutasi hewan yang terjadi dimana-mana\n");
+      sleep(2);
+      printf("Kami tidak bisa membantu warga penduduk Ganesha yang sedang diserang kecoa raksasa Jatinangor\n");
+      sleep(2);
+      printf("Waktumu hanya 12 jam untuk membuat robot dan memberikannya ke regu penyerangan\nATAU kota ini akan hancur\n\n\n");
+      sleep(3);
+      printf("Orang itu tiba-tiba pergi tanpa berkata apapun\n\n");
+      sleep(3);
+
+      printf("Saatku melihat keluar orang yang minta tolong tadi sudah dimakan kecoa raksasa\n");
+      sleep(2);
+      printf("Aku harus segera membuat robotnya atau kota ini akan hancur\n\n");
+      sleep(4);
+      printf("Setelah 12 jam\nRobot pun akhirnya jadi...\n\n");
+      sleep(2);
+      printf("Tiba-tiba orang yang tadi datang kembali dan kali ini membawa seseorang\n");
+      sleep(2);
+      printf("Dia langsung berkata...\nOh iya, orang ini yang akan memakai robotmu dan menyerang kecoa raksasa itu\nAku pergi dulu ya\n\n\n");
+      sleep(3);
+  }
+
+  printf("Sekarang waktumu untuk menyelamatkan dunia\n\n");
+  sleep(2);
+  printf("Perkenalkan dirimu terlebih dahulu\n\n");
+  char name[20];
+  printf("Halo aku ");
+  scanf("%s", name);
+  printf("Aku bertugas sebagai tim penyerangan\n\n");
+  sleep(3);
+  printf("Halo %s, Aku akan memberimu arahan untuk menggunakan robot ini\n\n", name);
+  char ulangi = 'y';
+  while (ulangi == 'y'){
+    printf("Robot ini memiliki spesifikasi sebagai berikut \n");
+    sleep(2);
+    printf("1.Bisa bergerak maju, mundur, ke kanan dan ke kiri.\n2.Mampu mengkalkulasi jarak antara robot dan musuh\n3.Mampu menembak kecoak mutan tersebut\n\n");
+    sleep(3);
+    printf("Oh iya..., untuk menggerakkan dan menyerang kamu perlu menekan tombol berikut\n");
+    printf("------Control------\n");
+    printf("    (q)(w)(e)\n");
+    printf("    (a)(s)(d)  \n");
+    printf("-------------------\n");
+    printf("(w) - Foward\n");
+    printf("(a) - Left\n");
+    printf("(s) - Backward\n");
+    printf("(d) - Right\n");
+    printf("(e) - shoot\n");
+    printf("(q) - quit\n");
+    printf("-------------------\n");
+    printf("Jangan sampai robot ini rusak!!!\nAtau kota ini akan hancur\n\n");
+    sleep(2);
+    printf("Apa kamu ingin mengulangi penjelasan ini\n");
+    printf("Ketik 'y' jika kamu ingin mengulang. Ketik huruf apa pun jika kamu sudah paham dan ingin langsung memulai penyerangan\n");
+    scanf(" %c", &ulangi);
+  }
+  sleep(3);
+  printf("Baiklah %s jika kamu sudah paham.\nSekarang tugasmu untuk menyelamatkan kota ini.\nSemoga beruntung\n", name);
+}
 
 
 
@@ -454,6 +544,7 @@ int damageKecoa(int xkecoa,int ykecoa, int xplayer, int yplayer, int healthPlaye
 //Fungsi Utama
 int main()
 {
+    intro();
     int map[10][10]={0}; //Menginisialisi peta 10x10 yang berisi 0
     int quit=0; //Menginisialisasi quit yang membuat program berhenti ketika quit != 0
     int healthKecoa=3; //Menginisialisasi Nyawa Kecoa. Ketika nyawa kecoa=0, kill bertambah 1
