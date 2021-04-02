@@ -68,6 +68,7 @@ int gerak(int map[10][10], int xplayer, int yplayer, int xkecoa, int ykecoa,int 
     printf("   (w)     (e) - Shoot\n");
     printf("(a)(s)(d)  (q) - Quit\n");
     printf("\n");
+    printf("nb: 'Jarak Maksimal adalah 4'.\n");
     printf("Range: %d\n",jarak);
     printf("Nyawa Kecoa: %d\n",healthKecoa);
     printf("Jumlah Kill: %d\n",kill);
@@ -438,7 +439,7 @@ int damageKecoa(int xkecoa,int ykecoa, int xplayer, int yplayer, int healthPlaye
 }
 // Fungsi Intro untuk awal
 void intro() {
-  printf("Skip Intro?(y/n)");
+  printf("Skip Intro?(y/n)\n");
   char skipintro;
   skipintro=_getch();
   if (skipintro!='y')
@@ -496,7 +497,7 @@ void intro() {
   printf("Aku bertugas sebagai tim penyerangan\n\n");
   sleep(1);
   printf("Halo %s, Aku akan memberimu arahan untuk menggunakan robot ini\n\n", name);
-  printf("Skip Penjelasan? (y/n)");
+  printf("Skip Penjelasan? (y/n)\n");
   char skippenjelasan;
   skippenjelasan=_getch();
   char ulangi = 'y';
