@@ -59,19 +59,23 @@ int yplayer(int map[10][10])
     }
 }
 //Fungsi pilihan gerakan player
-int gerak(int map[10][10], int xplayer, int yplayer, int xkecoa, int ykecoa,int jarak,int healthKecoa,int kill,int healthPlayer)
+int gerak(int map[10][10], int xplayer, int yplayer, int xkecoa, int ykecoa,int jarak,int healthKecoa,int kill,int healthPlayer,int salahtembak)
 {
     system("cls");
     peta(map);
     char gerakan;
     printf("------Control------\n");
     printf("   (w)     (e) - Shoot\n");
-    printf("(a)   (d)  \n");
-    printf("   (s)     (q) - Quit\n");
+    printf("(a)(s)(d)  (q) - Quit\n");
+    printf("\n");
     printf("Range: %d\n",jarak);
     printf("Nyawa Kecoa: %d\n",healthKecoa);
     printf("Jumlah Kill: %d\n",kill);
     printf("Nyawa User : %d\n",healthPlayer);
+    if (salahtembak==1)
+    {
+        printf("Anda gagal menembak kecoa, coba perdekat jarak!\n");
+    }
     printf("Move: ");
     //user diminta menginput "w,a,s,d" untuk bergerak, "s" untuk menembak, "q" untuk keluar aplikasi
     gerakan=_getch();
@@ -434,25 +438,23 @@ int damageKecoa(int xkecoa,int ykecoa, int xplayer, int yplayer, int healthPlaye
 }
 // Fungsi Intro untuk awal
 void intro() {
-  printf("Pada tahun 2069, terjadi perang nuklir antara Amerika dan China. \nDalam 2 jam perdaban manusia RUNTUH....\n\n\n");
-  sleep(3);
-  printf("Intensitas  partikel  radioaktif  yang  gugur  dari  stratosfer  mengakibatkan kematian milyaran  makhluk  hidup.\nTumbuhan dan  hewan  yang  selamat  bermutasi  menjadi spesies ganas yang radioaktif. \nEntah sudah berapa lama matahari tidak tampak....\n\n\n");
-  sleep(3);
-  printf("TOLONG...\n");
-  sleep(2);
-  printf("TOLONG...\n");
-  sleep(2);
-  printf("TOLONG KAMI....\n");
-  sleep(3);
-
-  char skip;
-  printf("\n---------------------------------------\n");
-  printf("skip? tekan (s) \n");
-  printf("Tekan apa pun untuk melanjutkan cerita \n");
-  scanf("%c", &skip);
-  printf("---------------------------------------\n\n");
-  if (skip != 's'){
-      printf("Suara itu tampak tidak jauh dari sini...\n\n");
+  printf("Skip Intro?(y/n)");
+  char skipintro;
+  skipintro=_getch();
+  if (skipintro!='y')
+  {
+    printf("Pada tahun 2069, terjadi perang nuklir antara Amerika dan China. \nDalam 2 jam perdaban manusia RUNTUH....\n\n\n");
+    sleep(3);
+    printf("Intensitas  partikel  radioaktif  yang  gugur  dari  stratosfer  mengakibatkan kematian milyaran  makhluk  hidup.\nTumbuhan dan  hewan  yang  selamat  bermutasi  menjadi spesies ganas yang radioaktif. \nEntah sudah berapa lama matahari tidak tampak....\n\n\n");
+    sleep(3);
+    printf("TOLONG...\n");
+    sleep(2);
+    printf("TOLONG...\n");
+    sleep(2);
+    printf("TOLONG KAMI....\n");
+    sleep(3);
+    printf("---------------------------------------\n\n");
+    printf("Suara itu tampak tidak jauh dari sini...\n\n");
       sleep(2);
       printf("Tiba-tiba ada orang datang menghampiriku\ndan berkata...\n");
       sleep(3);
@@ -485,21 +487,25 @@ void intro() {
       sleep(3);
   }
 
-  printf("Sekarang waktumu untuk menyelamatkan dunia\n\n");
+  printf("\nSekarang waktumu untuk menyelamatkan dunia\n\n");
   sleep(2);
   printf("Perkenalkan dirimu terlebih dahulu\n\n");
   char name[20];
   printf("Halo aku ");
   scanf("%s", name);
   printf("Aku bertugas sebagai tim penyerangan\n\n");
-  sleep(3);
+  sleep(1);
   printf("Halo %s, Aku akan memberimu arahan untuk menggunakan robot ini\n\n", name);
+  printf("Skip Penjelasan? (y/n)");
+  char skippenjelasan;
+  skippenjelasan=_getch();
   char ulangi = 'y';
+  if (skippenjelasan!='y')
+  {
   while (ulangi == 'y'){
     printf("Robot ini memiliki spesifikasi sebagai berikut \n");
-    sleep(2);
     printf("1.Bisa bergerak maju, mundur, ke kanan dan ke kiri.\n2.Mampu mengkalkulasi jarak antara robot dan musuh\n3.Mampu menembak kecoak mutan tersebut\n\n");
-    sleep(3);
+    sleep(1);
     printf("Oh iya..., untuk menggerakkan dan menyerang kamu perlu menekan tombol berikut\n");
     printf("------Control------\n");
     printf("    (q)(w)(e)\n");
@@ -518,14 +524,15 @@ void intro() {
     printf("Ketik 'y' jika kamu ingin mengulang. Ketik huruf apa pun jika kamu sudah paham dan ingin langsung memulai penyerangan\n");
     ulangi=_getch();
   }
-  sleep(3);
+  }
   printf("Baiklah %s jika kamu sudah paham.\nSekarang tugasmu untuk menyelamatkan kota ini.\nSemoga beruntung\n", name);
 }
 
 void rules()
 {
-    char ulangi='y';
-    while (ulangi=='y'){
+    char ulangi='z';
+    while (ulangi!='y')
+    {
         printf("----------------------------------       ATURAN BERMAIN       ----------------------------------\n");
         printf("* Player dapat mengontrol robot menggunakan tombol yang tersedia.\n");
         printf("* Player dapat bergerak keatas(w), kebawah(s), kekanan(d), dan kekiri(a) serta dapat menembak(e).\n");
@@ -567,6 +574,8 @@ int main()
     int kill=0; //Menginisialiasi jumlah kecoa yang player bunuh. Akan bertambah ketika Nyawa kecoa==0
     int healthPlayer=3; //Menginisialisasi nyawa awal player. Program akan selesai ketika nyawa player==0
     int baruSpawnKecoa=0;//Mengecek apakah kecoa baru spawn. Jika baru spawn, kecoa tidak akan bergerak
+    int salahtembak=0;
+    int healthKecoaSebelumnya; 
     srand(time(NULL)); //Menginisialiasi seed agar dapat mengeluarkan angka random (berfungsi dalam memunculkan kecoa dan menggerakan kecoa)
     map[0][0]=1; //Menginisialisasi player di kordinat (0,0)
     spawnKecoa(map,xplayer(map),yplayer(map)); //Menginisialisasi kecoa di lokasi acak yang tidak sekitar player
@@ -575,14 +584,23 @@ int main()
     while (quit==0)
     {
     //switch berfungsi untuk menentukan apakah player mau bergerak(1), menenbak(2), keluar(0)
-    switch (gerak(map,xplayer(map),yplayer(map),xkecoa(map),ykecoa(map),jarakKecoa(xplayer(map),yplayer(map),xkecoa(map),ykecoa(map)),healthKecoa,kill,healthPlayer))
+    switch (gerak(map,xplayer(map),yplayer(map),xkecoa(map),ykecoa(map),jarakKecoa(xplayer(map),yplayer(map),xkecoa(map),ykecoa(map)),healthKecoa,kill,healthPlayer,salahtembak))
     {
     case 0: //player memilih untuk quit pada fungsi gerakan
         quit=1;
         break;
     case 2: //Player memilih untuk menembak kecoa
         //nyawa kecoa akan betambah atau berkurang tergantung hasil fungsi tembakan
+        healthKecoaSebelumnya=healthKecoa;
         healthKecoa=shoot(map,jarakKecoa(xplayer(map),yplayer(map),xkecoa(map),ykecoa(map)),healthKecoa);
+        if (healthKecoaSebelumnya<healthKecoa)
+        {
+            salahtembak=1;
+        }
+        else
+        {
+            salahtembak=0;
+        }
         if (healthKecoa==0) //jika berhasil membunuh kecoa
         {
             map[ykecoa(map)][xkecoa(map)]=0; //menghapus kecoa dari peta
