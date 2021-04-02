@@ -64,19 +64,23 @@ int yplayer(int map[10][10])
     }
 }
 //Fungsi pilihan gerakan player
-int gerak(int map[10][10], int xplayer, int yplayer, int xkecoa, int ykecoa,int jarak,int healthKecoa,int kill,int healthPlayer)
+int gerak(int map[10][10], int xplayer, int yplayer, int xkecoa, int ykecoa,int jarak,int healthKecoa,int kill,int healthPlayer,int salahtembak)
 {
     system("cls");
     peta(map);
     char gerakan;
     printf("------Control------\n");
     printf("   (w)     (e) - Shoot\n");
-    printf("(a)   (d)  \n");
-    printf("   (s)     (q) - Quit\n");
+    printf("(a)(s)(d)  (q) - Quit\n");
+    printf("\n");
     printf("Range: %d\n",jarak);
     printf("Nyawa Kecoa: %d\n",healthKecoa);
     printf("Jumlah Kill: %d\n",kill);
     printf("Nyawa User : %d\n",healthPlayer);
+    if (salahtembak==1)
+    {
+        printf("Anda gagal menembak kecoa, coba perdekat jarak!\n");
+    }
     printf("Move: ");
     //user diminta menginput "w,a,s,d" untuk bergerak, "s" untuk menembak, "q" untuk keluar aplikasi
     gerakan=_getch();
@@ -575,6 +579,8 @@ int main()
     int kill=0; //Menginisialiasi jumlah kecoa yang player bunuh. Akan bertambah ketika Nyawa kecoa==0
     int healthPlayer=3; //Menginisialisasi nyawa awal player. Program akan selesai ketika nyawa player==0
     int baruSpawnKecoa=0;//Mengecek apakah kecoa baru spawn. Jika baru spawn, kecoa tidak akan bergerak
+    int salahtembak=0;
+    int healthKecoaSebelumnya; 
     srand(time(NULL)); //Menginisialiasi seed agar dapat mengeluarkan angka random (berfungsi dalam memunculkan kecoa dan menggerakan kecoa)
     map[0][0]=1; //Menginisialisasi player di kordinat (0,0)
     spawnKecoa(map,xplayer(map),yplayer(map)); //Menginisialisasi kecoa di lokasi acak yang tidak sekitar player
@@ -583,14 +589,23 @@ int main()
     while (quit==0)
     {
     //switch berfungsi untuk menentukan apakah player mau bergerak(1), menenbak(2), keluar(0)
-    switch (gerak(map,xplayer(map),yplayer(map),xkecoa(map),ykecoa(map),jarakKecoa(xplayer(map),yplayer(map),xkecoa(map),ykecoa(map)),healthKecoa,kill,healthPlayer))
+    switch (gerak(map,xplayer(map),yplayer(map),xkecoa(map),ykecoa(map),jarakKecoa(xplayer(map),yplayer(map),xkecoa(map),ykecoa(map)),healthKecoa,kill,healthPlayer,salahtembak))
     {
     case 0: //player memilih untuk quit pada fungsi gerakan
         quit=1;
         break;
     case 2: //Player memilih untuk menembak kecoa
         //nyawa kecoa akan betambah atau berkurang tergantung hasil fungsi tembakan
+        healthKecoaSebelumnya=healthKecoa;
         healthKecoa=shoot(map,jarakKecoa(xplayer(map),yplayer(map),xkecoa(map),ykecoa(map)),healthKecoa);
+        if (healthKecoaSebelumnya<healthKecoa)
+        {
+            salahtembak=1;
+        }
+        else
+        {
+            salahtembak=0;
+        }
         if (healthKecoa==0) //jika berhasil membunuh kecoa
         {
             map[ykecoa(map)][xkecoa(map)]=0; //menghapus kecoa dari peta
