@@ -1,12 +1,7 @@
 /*
-Nama    :Bryan Bernigen
-NIM     :16520237
-*/
-
-/*
 READ ME
 Fungsi yang akan dijalankan adalah int main() <-Fungsi Utama
-Sisanya merupakan fungsi tambahan yang akan dipanggal di fungsi utama
+Sisanya merupakan fungsi tambahan yang akan dipanggil di fungsi utama
 */
 
 #include <stdio.h>
@@ -439,9 +434,9 @@ int damageKecoa(int xkecoa,int ykecoa, int xplayer, int yplayer, int healthPlaye
 }
 // Fungsi Intro untuk awal
 void intro() {
-  printf("Pada tahun 2069, terjadi perang nuklir antara Amerika dan China. \nDalam 2 jam perdaban manusia RUNTUH....\n\n\n");
+  printf("Pada tahun 2069, terjadi perang nuklir antara Amerika dan China. \nDalam 2 jam perdaban manusia RUNTUH....\n\n");
   sleep(3);
-  printf("Intensitas  partikel  radioaktif  yang  gugur  dari  stratosfer  mengakibatkan kematian milyaran  makhluk  hidup.\nTumbuhan dan  hewan  yang  selamat  bermutasi  menjadi spesies ganas yang radioaktif. \nEntah sudah berapa lama matahari tidak tampak....\n\n\n");
+  printf("Intensitas  partikel  radioaktif  yang  gugur  dari  stratosfer  mengakibatkan kematian milyaran  makhluk  hidup.\nTumbuhan dan  hewan  yang  selamat  bermutasi  menjadi spesies ganas yang radioaktif. \nEntah sudah berapa lama matahari tidak tampak....\n\n");
   sleep(3);
   printf("TOLONG...\n");
   sleep(2);
@@ -454,54 +449,54 @@ void intro() {
   printf("\n---------------------------------------\n");
   printf("skip? tekan (s) \n");
   printf("Tekan apa pun untuk melanjutkan cerita \n");
-  scanf("%c", &skip);
+  skip=_getch();
   printf("---------------------------------------\n\n");
   if (skip != 's'){
       printf("Suara itu tampak tidak jauh dari sini...\n\n");
       sleep(2);
       printf("Tiba-tiba ada orang datang menghampiriku\ndan berkata...\n");
       sleep(3);
-      printf("Apa benar kamu ingin menjadi anggota Urang Robot Orang\n\n");
+      printf("Apa benar kamu ingin menjadi anggota Urang Robot Orang?\n\n");
       sleep(3);
       printf("Siapa kamu???\n");
       sleep(2);
       printf("Orang itu tidak mau menjawab dan hanya memberiku pesan...\n\n");
       sleep(2);
-      printf("Kamu tidak perlu tahu siapa aku... Aku butuh bantuanmu\n");
+      printf("Kamu tidak perlu tahu siapa aku... Aku butuh bantuanmu.\n");
       sleep(1);
-      printf("Semua tim Urang Robot Orang sedang sibuk menghadapi mutasi hewan yang terjadi dimana-mana\n");
+      printf("Semua tim Urang Robot Orang sedang sibuk menghadapi mutasi hewan yang terjadi dimana-mana.\n");
       sleep(2);
-      printf("Kami tidak bisa membantu warga penduduk Ganesha yang sedang diserang kecoa raksasa Jatinangor\n");
+      printf("Kami tidak bisa membantu warga penduduk Ganesha yang sedang diserang kecoa raksasa Jatinangor.\n");
       sleep(2);
-      printf("Waktumu hanya 12 jam untuk membuat robot dan memberikannya ke regu penyerangan\nATAU kota ini akan hancur\n\n\n");
+      printf("Waktumu hanya 12 jam untuk membuat robot dan memberikannya ke regu penyerangan.\nATAU kota ini akan hancur.!!\n\n");
       sleep(3);
-      printf("Orang itu tiba-tiba pergi tanpa berkata apapun\n\n");
+      printf("Orang itu tiba-tiba pergi tanpa berkata apapun.\n\n");
       sleep(3);
 
-      printf("Saatku melihat keluar orang yang minta tolong tadi sudah dimakan kecoa raksasa\n");
+      printf("Saatku melihat keluar orang yang minta tolong tadi sudah dimakan kecoa raksasa.\n");
       sleep(2);
-      printf("Aku harus segera membuat robotnya atau kota ini akan hancur\n\n");
+      printf("Aku harus segera membuat robotnya atau kota ini akan hancur.\n\n");
       sleep(4);
-      printf("Setelah 12 jam\nRobot pun akhirnya jadi...\n\n");
+      printf("Setelah 12 jam,\nRobot pun akhirnya jadi...\n\n");
       sleep(2);
-      printf("Tiba-tiba orang yang tadi datang kembali dan kali ini membawa seseorang\n");
+      printf("Tiba-tiba orang yang tadi datang kembali dan kali ini membawa seseorang.\n");
       sleep(2);
-      printf("Dia langsung berkata...\nOh iya, orang ini yang akan memakai robotmu dan menyerang kecoa raksasa itu\nAku pergi dulu ya\n\n\n");
+      printf("Dia langsung berkata...\nOh iya, orang ini yang akan memakai robotmu dan menyerang kecoa raksasa itu.\nAku pergi dulu ya.\n\n\n");
       sleep(3);
   }
 
-  printf("Sekarang waktumu untuk menyelamatkan dunia\n\n");
+  printf("Sekarang waktumu untuk menyelamatkan dunia...!!!\n\n");
   sleep(2);
-  printf("Perkenalkan dirimu terlebih dahulu\n\n");
+  printf("Perkenalkan dirimu terlebih dahulu..\n\n");
   char name[20];
-  printf("Halo aku ");
+  printf("Halo aku, ");
   scanf("%s", name);
   printf("Aku bertugas sebagai tim penyerangan\n\n");
   sleep(3);
-  printf("Halo %s, Aku akan memberimu arahan untuk menggunakan robot ini\n\n", name);
+  printf("Halo %s, Aku akan memberimu arahan untuk menggunakan robot ini.\n\n", name);
   char ulangi = 'y';
   while (ulangi == 'y'){
-    printf("Robot ini memiliki spesifikasi sebagai berikut \n");
+    printf("Robot ini memiliki spesifikasi sebagai berikut: \n");
     sleep(2);
     printf("1.Bisa bergerak maju, mundur, ke kanan dan ke kiri.\n2.Mampu mengkalkulasi jarak antara robot dan musuh\n3.Mampu menembak kecoak mutan tersebut\n\n");
     sleep(3);
@@ -521,7 +516,7 @@ void intro() {
     sleep(2);
     printf("Apa kamu ingin mengulangi penjelasan ini\n");
     printf("Ketik 'y' jika kamu ingin mengulang. Ketik huruf apa pun jika kamu sudah paham dan ingin langsung memulai penyerangan\n");
-    scanf(" %c", &ulangi);
+    ulangi=_getch();
   }
   sleep(3);
   printf("Baiklah %s jika kamu sudah paham.\nSekarang tugasmu untuk menyelamatkan kota ini.\nSemoga beruntung\n", name);
@@ -541,16 +536,10 @@ void rules()
         printf("* Namun, kecoa dapat menyerang robot ketika jarak antara robot dan kecoa adalah 1.\n  Dan menyebabkan kerusakan dengan mengurangi 1 nyawa robot.\n");
         printf("* Apabila bar health robot turun ke angka 0, maka robot akan rusak total dan mati.\n");
         printf("* Player juga dapat menarik mundur robot apabila diperlukan dengan menggunakan tombol quit(q).\n");
-        printf("\nApakah kamu sudah paham? Tekan (y) untuk melanjutkan. Jika ingin mengualangi, tekan tombol apapun.\n");
-        scanf(" %c", &ulangi);
+        printf("\nApakah kamu sudah paham? Tekan 'y' untuk melanjutkan. Jika ingin mengulangi, tekan tombol apapun.\n");
+        ulangi=_getch();
     } 
 }
-
-
-
-
-
-
 
 
 
